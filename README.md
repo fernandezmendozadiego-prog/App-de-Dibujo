@@ -14,3 +14,29 @@ Usaremos el enfoque Ágil (Kanban) con un tablero de tres columnas (Hacer, En Pr
 - Como usuario, quiero insertar formas geométricas (rectángulos y círculos) en el lienzo.0
 #### Integrantes
 - Diego Fernández Mendoza — fernandezmendozadiego@gmail.com
+## Diagrama del Sistema
+
+```mermaid
+flowchart TD
+    %% Capa de Usuario e Interfaz
+    A[Usuario] -->|Interactúa con el ratón| B[Interfaz de Usuario - HTML/CSS]
+    
+    %% Herramientas y Lienzo
+    B -->|Selecciona color / tamaño| C[Barra de Herramientas]
+    B -->|Mueve o hace clic| D[Área de Dibujo - Canvas]
+    
+    %% Lógica en JavaScript
+    C -->|Actualiza parámetros| E[Controlador de Aplicación - JavaScript]
+    D -->|Envía eventos mousedown/mousemove| E
+    
+    %% Acciones
+    E -->|Renderiza trazos y figuras| F[Lienzo / API Canvas]
+    
+    %% Operaciones especiales
+    B -->|Clic en Limpiar| G[Función de Limpieza]
+    G -->|Borra contenido| F
+    
+    B -->|Clic en Guardar| H[Función de Exportación]
+    F -->|Convierte a dataURL| H
+    H -->|Descarga archivo .png/.jpg| I[Dispositivo del Usuario]
+```
